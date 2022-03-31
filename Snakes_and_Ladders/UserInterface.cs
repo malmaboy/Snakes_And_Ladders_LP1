@@ -34,11 +34,31 @@ namespace Snakes_and_Ladders
             Console.WriteLine("          1.Play          ");
             Console.WriteLine("      2.Instructions      ");
             Console.WriteLine("          3.Quit          ");
+            Console.WriteLine();
+            Console.WriteLine("(please type in the number of the option you " + 
+            "want)");
         }
 
         private void Instructions()
         {
-            Console.WriteLine("Write here instructions of the game");
+            Console.WriteLine("\n- This is a game for 2 players to see which" + 
+            " one is the fastest to reach the end of the board.");
+            Console.WriteLine("\n- The board has 25 houses, and the number of" + 
+            " houses the players go through is determined by dices of 6.");
+            Console.WriteLine("\n- Normal houses do nothing special.");
+            Console.WriteLine("\n- Snakes makes the player go back 5 houses.");
+            Console.WriteLine("\n- Ladders makes the player go up 5 houses.");
+            Console.WriteLine("\n- Cobra makes the player go back to the" + 
+            " first house.");
+            Console.WriteLine("\n- Boost makes the player go up 2 houses.");
+            Console.WriteLine("\n- U-Turn makes the player go back 2 houses.");
+            Console.WriteLine("\n- Extra Die gives the player 1 more dice" + 
+            " to use whenever the player wants (//Type here command to use//).");
+            Console.WriteLine("\n- Cheat Die gives the ability to change the" + 
+            " number of any dice whenever the player wants.");
+
+            Console.WriteLine("\nPress ENTER to continue...");
+            Console.ReadLine();
         }
         /// <summary>
         /// Displays board on console and formats it
@@ -103,7 +123,7 @@ namespace Snakes_and_Ladders
 
             while (true)
             {
-                //Calls for Main_Menu method in Menu class
+                //Calls for Main_Menu method
                 Main_Menu();
 
                 //Reads user input
