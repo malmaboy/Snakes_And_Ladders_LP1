@@ -115,7 +115,8 @@ namespace Snakes_and_Ladders
         /// Displays the menu
         /// </summary>
         public void DisplayMenu()
-        {
+        { 
+            
             //Small introduction text
             Console.WriteLine("\nWelcome to Snakes and Ladders!");
             Console.WriteLine("Please write the instructions after the arrow " +
@@ -128,28 +129,39 @@ namespace Snakes_and_Ladders
 
                 //Reads user input
                 Console.Write("---> ");
-                int menu_option = Convert.ToInt32(Console.ReadLine());
+                string menu_option = Console.ReadLine();
 
-                //Switch case for the option chosen by the user
-                switch (menu_option)
+                if (menu_option == "1" || menu_option == "2" || menu_option == "3")
                 {
-                    case 1:
+                    switch (menu_option)
+                    {
+                    case "1":
                         
                         break;
 
-                    case 2:
+                    case "2":
                         Instructions();
                         break;
 
-                    case 3:
+                    case "3":
                         Console.WriteLine("Bye!");
                         return;
 
                     default:
-                        Console.WriteLine("Please use a valid option.");
                         break;
+                    }
+                }
+                else
+                {
+                    InvalidOption();
                 }
             }
+        }
+
+        private void InvalidOption()
+        {
+            Console.WriteLine("Please type a valid option");
+            return;
         }
     }
 }
