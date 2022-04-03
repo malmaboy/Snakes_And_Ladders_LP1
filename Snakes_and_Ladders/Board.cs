@@ -69,10 +69,14 @@ namespace Snakes_and_Ladders
         public int Die => die;
 
         /// <summary>
-        /// Current House name
+        /// Current House name for player 1
         /// </summary>
-        public string HouseToShow{get; private set;}
-
+        public string HouseToShow_1{get; private set;}
+        
+        /// <summary>
+        /// Current House name for player 2
+        /// </summary>
+        public string HouseToShow_2{get; private set;}
 
         /// <summary>
         /// Creates two-dimensional array with empty houses
@@ -370,13 +374,13 @@ namespace Snakes_and_Ladders
             {
                 player_1.PosY -= 1;
                 player_1.PosX = board.GetLength(0) - 1 - player_1.PosX;
-                HouseToShow = "Snakes";
+                HouseToShow_1 = "Snakes";
             }
              if(board[player_2.PosY, player_2.PosX] == (char) Houses.Snakes)
             {
                 player_2.PosY -= 1;
                 player_2.PosX = board.GetLength(0) - 1 - player_2.PosX;
-                HouseToShow = "Snakes";
+                HouseToShow_2 = "Snakes";
             }
         }  
 
@@ -389,13 +393,13 @@ namespace Snakes_and_Ladders
             {
                 player_1.PosY += 1;
                 player_1.PosX = board.GetLength(0) - 1 - player_1.PosX;
-                HouseToShow = "Ladders";
+                HouseToShow_1 = "Ladders";
             }
             if(board[player_2.PosY, player_2.PosX] == (char) Houses.Ladders)
             {
                 player_2.PosY += 1;
                 player_2.PosX = board.GetLength(0) - 1 - player_2.PosX;
-                HouseToShow = "Ladders";
+                HouseToShow_2 = "Ladders";
             }  
         } 
         
@@ -408,13 +412,13 @@ namespace Snakes_and_Ladders
             {
                 player_1.PosX = 0;
                 player_1.PosY = 0;
-                HouseToShow = "Cobra";
+                HouseToShow_1 = "Cobra";
             }
             if(board[player_2.PosY, player_2.PosX] == (char) Houses.Cobra)
             {
                 player_2.PosX = 0;
                 player_2.PosY = 0;
-                HouseToShow = "Cobra";
+                HouseToShow_2 = "Cobra";
             }
 
             
@@ -428,14 +432,100 @@ namespace Snakes_and_Ladders
             if(board[player_1.PosY, player_1.PosX] == (char) Houses.Boost)
             {
                 player_1.PosX += 2;
-                HouseToShow = "Boost";
+                HouseToShow_1 = "Boost";
             }
             if(board[player_2.PosY, player_2.PosX] == (char) Houses.Boost)
             {
                 player_2.PosX += 2;
-                HouseToShow = "Boost";
+                HouseToShow_2 = "Boost";
             }
 
+        }
+
+        /// <summary>
+        ///  Player go back 2 houses
+        /// </summary>
+        private void U_TurnHouse()
+        {
+            if(board[player_1.PosY, player_1.PosX] == (char) Houses.U_Turn)
+            {
+                player_1.PosX -= 2;
+                HouseToShow_1= "U-Turn";
+            }
+             if(board[player_2.PosY, player_2.PosX] == (char) Houses.U_Turn)
+            {
+                player_2.PosX -= 2;
+                HouseToShow_2 = "U-Turn";
+            }
+
+            
+        }
+
+        /// <summary>
+        /// Gives a extra die to the player
+        /// </summary>
+        private void ExtraDieHouse()
+        {
+            if(board[player_1.PosY, player_1.PosX] == (char) Houses.Extra_Die)
+            {
+                if(player_1.HasExtra_die == false)
+                    player_1.HasExtra_die = true;
+
+                HouseToShow_1 = "Extra Die";
+            }
+             if(board[player_2.PosY, player_2.PosX] == (char) Houses.Extra_Die)
+            {
+                if(player_2.HasExtra_die == false)
+                    player_2.HasExtra_die = true;
+
+                HouseToShow_2 = "Extra Die";
+            }
+
+        }
+
+        /// <summary>
+        /// Does nothing, only to save the house type for description
+        /// </summary>
+        private void NormalHouse()
+        {
+            if(board[player_1.PosY, player_1.PosX] == (char) Houses.Normal)
+            {
+                HouseToShow_1 = "Normal";
+            }
+             if(board[player_2.PosY, player_2.PosX] == (char) Houses.Normal)
+            {
+                HouseToShow_2 = "Normal";
+            }
+        }
+
+
+        private void UseExtraDie()
+        {
+            // Input
+            ConsoleKeyInfo key;
+            key = Console.ReadKey();
+
+
+            if(player_1.HasExtra_die == true && Turn == player_1.PlayerName) 
+            {
+                if(key.Key == ConsoleKey.Tab)
+                {
+                    player_1.HasExtra_die = false;
+                    PlayerMovement(player_1);
+                }
+                
+            }
+
+            if(player_2.HasExtra_die == true && Turn == player_2.PlayerName) 
+            {
+                if(key.Key == ConsoleKey.Tab)
+                {
+                    player_2.HasExtra_die = false;
+                    PlayerMovement(player_2);
+                }
+                
+            }
+                
         }
 
         

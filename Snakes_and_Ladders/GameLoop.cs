@@ -70,9 +70,13 @@ namespace Snakes_and_Ladders
                     else if (board.Turn == "Player_2")
                         board.PlayerMovement(board.Player_2);
 
-                     //Render
+                    //Render
                     userInterface.DisplayBoard(board, board.Player_1, board.Player_2);
-                    userInterface.Description(board.Turn, board.Die, board.HouseToShow);
+                    if (board.Turn == board.Player_1.PlayerName)
+                        userInterface.Description(board, board.Die, board.HouseToShow_1);
+                    else if (board.Turn == board.Player_2.PlayerName)
+                        userInterface.Description(board, board.Die, board.HouseToShow_2);
+                    
 
                 
 

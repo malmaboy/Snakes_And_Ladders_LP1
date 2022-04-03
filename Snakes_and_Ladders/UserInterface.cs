@@ -64,7 +64,7 @@ namespace Snakes_and_Ladders
             Console.WriteLine("\n- Boost makes the player move 2 houses.");
             Console.WriteLine("\n- U-Turn makes the player go back 2 houses.");
             Console.WriteLine("\n- Extra Die gives the player 1 more dice" + 
-            " to use whenever the player wants (//Type here command to use//).");
+            " to use whenever the player wants.");
             Console.WriteLine("\n- Cheat Die gives the ability to change the" + 
             " number of any dice whenever the player wants.");
 
@@ -246,6 +246,7 @@ namespace Snakes_and_Ladders
                 {
                     Console.WriteLine($"{board.Turn} HAS EXTRA DIE");
                     Console.WriteLine($"WHEN {board.Turn} TYPE  TO USE IT!!");
+                    Console.WriteLine("Then type SpaceBar to update");
                 }
                     
 
@@ -261,21 +262,21 @@ namespace Snakes_and_Ladders
             
 
             Console.BackgroundColor = ConsoleColor.Black;
-            System.Console.WriteLine(" Normal");
+            Console.WriteLine(" Normal");
             Console.BackgroundColor = ConsoleColor.Blue;
-            System.Console.WriteLine(" Boost");
+            Console.WriteLine(" Boost");
             Console.BackgroundColor = ConsoleColor.Green;
-            System.Console.WriteLine(" Cobra");
+            Console.WriteLine(" Cobra");
             Console.BackgroundColor = ConsoleColor.Yellow;
-            System.Console.WriteLine(" Ladder");
+            Console.WriteLine(" Ladder");
             Console.BackgroundColor = ConsoleColor.Magenta;
-            System.Console.WriteLine(" Cheat Die");
+            Console.WriteLine(" Cheat Die");
             Console.BackgroundColor = ConsoleColor.Red;
-            System.Console.WriteLine(" Extra Die ");
+            Console.WriteLine(" Extra Die ");
             Console.BackgroundColor = ConsoleColor.Gray;
-            System.Console.WriteLine(" U Turn ");
+            Console.WriteLine(" U Turn ");
             Console.BackgroundColor = ConsoleColor.Cyan;
-            System.Console.WriteLine(" Snakes");
+            Console.WriteLine(" Snakes");
 
             Console.ResetColor();
             
@@ -285,9 +286,9 @@ namespace Snakes_and_Ladders
         /// <summary>
         /// In game description
         /// </summary>
-        public void Description(string turn , int dice, string houses)
+        public void Description(Board board , int dice, string houses)
         {
-            System.Console.WriteLine($"{turn} : die = {dice} to a {houses} location");
+            Console.WriteLine($"{board.Turn} : die = {dice} to a {houses} location");
         }
 
     }
