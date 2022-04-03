@@ -280,5 +280,15 @@ namespace Snakes_and_Ladders
             Console.ResetColor();
             
         }
+        
+
+        /// <summary>
+        /// In game description
+        /// </summary>
+        public void Description(string turn , int dice, string houses)
+        {
+            System.Console.WriteLine($"{turn} : die = {dice} to a {houses} location");
+        }
+
     }
 }

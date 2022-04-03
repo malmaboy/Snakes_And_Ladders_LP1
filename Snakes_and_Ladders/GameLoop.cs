@@ -72,7 +72,7 @@ namespace Snakes_and_Ladders
 
                      //Render
                     userInterface.DisplayBoard(board, board.Player_1, board.Player_2);
-                    
+                    userInterface.Description(board.Turn, board.Die, board.HouseToShow);
 
                 
 

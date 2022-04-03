@@ -68,10 +68,15 @@ namespace Snakes_and_Ladders
         /// </summary>
         public int Die => die;
 
+        /// <summary>
+        /// Current House name
+        /// </summary>
+        public string HouseToShow{get; private set;}
+
 
         /// <summary>
         /// Creates two-dimensional array with empty houses
-        /// </summary>
+        /// /// </summary>
         public Board()
         {
             dice = new Dice();
@@ -342,9 +347,57 @@ namespace Snakes_and_Ladders
             }            
         }
 
+        /// <summary>
+        /// Check the house that current player is a special house
+        /// </summary>
         private void CheckHouses()
         {
-            
+            if(player_1.PosX >= 0 && player_2.PosX >= 0)
+            {
+                SnakeHouse();
+                LadderHouse();
+            }
         }
+
+        /// <summary>
+        /// Down one house in vertical
+        /// </summary>
+        private void SnakeHouse()
+        {   
+            if(board[player_1.PosY, player_1.PosX] == (char) Houses.Snakes)
+            {
+                player_1.PosY -= 1;
+                player_1.PosX = board.GetLength(0) - 1 - player_1.PosX;
+                HouseToShow = "Snakes";
+            }
+             if(board[player_2.PosY, player_2.PosX] == (char) Houses.Snakes)
+            {
+                player_2.PosY -= 1;
+                player_2.PosX = board.GetLength(0) - 1 - player_2.PosX;
+                HouseToShow = "Snakes";
+            }
+        }  
+
+        /// <summary>
+        ///  up one house in vertical
+        /// </summary>
+        private void LadderHouse()
+        {
+            if(board[player_1.PosY, player_1.PosX] == (char) Houses.Ladders)
+            {
+                player_1.PosY += 1;
+                player_1.PosX = board.GetLength(0) - 1 - player_1.PosX;
+                HouseToShow = "Ladders";
+            }
+            if(board[player_2.PosY, player_2.PosX] == (char) Houses.Ladders)
+            {
+                player_2.PosY += 1;
+                player_2.PosX = board.GetLength(0) - 1 - player_2.PosX;
+                HouseToShow = "Ladders";
+            }  
+        } 
+
+        
+
     }
 }
