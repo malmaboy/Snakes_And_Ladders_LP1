@@ -55,6 +55,9 @@ namespace Snakes_and_Ladders
         {
             while(board.CheckWinner(loop))
             {
+                
+                userInterface.GameInstructions(board);
+
                spaceKey = Console.ReadKey();
 
                 if (spaceKey.Key == ConsoleKey.Spacebar && spaceKey.Key != ConsoleKey.Tab)
