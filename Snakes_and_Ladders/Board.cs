@@ -114,40 +114,43 @@ namespace Snakes_and_Ladders
             
              amount =1;
             HousesGeneration(Houses.Cheat_Die, amount);
+            
+            
+            FirstPlayerToPlay();
 
         }
-
-
+        
+        
+        // Player
+        
         /// <summary>
-        /// Generate Houses in board
+        /// Decides who the first player to play
         /// </summary>
-        private void HousesGeneration(Houses house,int amount)
+        /// <param name="dados"></param>
+        private void FirstPlayerToPlay()
         {
+            int firstDice = dice.RollDice();
+            int secondDice = dice.RollDice();
 
-            int x ;
-            int y;
-
-            for(int i =0; i<amount;){
-                x = dice.Random.Next(0,5);
-                y = dice.Random.Next(0,5);
+            while (true)
+            {
+                if(firstDice == secondDice)
+                    continue;
                 
-                if(board[y,x] != (char)Houses.Normal||
-                    x==0&&y==0||
-                x==4&&y==4)
-                continue;
-
-                if(house == Houses.Snakes &&
-                y==0)
-                continue;
-
-                if(house == Houses.Ladders&&
-                y==4)
-                continue;
-
-                board[y,x] = (char)house;
-                i++;
-            }            
+                if (firstDice > secondDice)
+                {
+                    Turn = player_1.PlayerName;
+                    break;
+                }
+                if (secondDice > firstDice)
+                {
+                    Turn = player_1.PlayerName;
+                    
+                    break;
+                }
+            }
         }
+        
 
         /// <summary>
         /// Change turn through players
@@ -161,6 +164,27 @@ namespace Snakes_and_Ladders
                 Turn = player_1.PlayerName;
 
         }
+        
+        
+        /// <summary>
+        ///  Verify Who is the Winner
+        /// </summary>
+        public bool CheckWinner(bool loop)
+        {
+            if (player_1.PosX == 4 && player_1.PosY == 4)
+            {
+                userInterface.WinnerMessage("Player_1");
+                loop = false;
+            }
+
+
+            if (player_2.PosX == 4 && player_2.PosY == 4)
+            {
+                userInterface.WinnerMessage("Player_2");
+                loop = false;
+            }
+            return loop;
+        }
 
 
         /// <summary>
@@ -169,12 +193,67 @@ namespace Snakes_and_Ladders
         /// <param name="player">Player to move.</param>
         public void PlayerMovement(Player player)
         {
+            die = dice.RollDice();
 
+            player.PosX += die;
+            
+            TransformPlayer(player);
+            CheckCollisionWithPlayer(Turn);
+            TransformPlayer(player);
+            CheckHouses();
+            TransformPlayer(player);
+        }
+
+        /// <summary>
+        /// Clamp players position so they dont get out of the array
+        /// </summary>
+        /// <param name="player">Current Player</param>
+        private void TransformPlayer(Player player)
+        {
+            while(player.PosX > board.GetLength(0) - 1 
+                  || player.PosX < 0)
+            {
+                if(player.PosY == board.GetLength(1) 
+                    - 1 && player.PosX > 0)
+                    player.PosX = board.GetLength(1) - 1 
+                        - (player.PosX - (board.GetLength(1)- 1));
+                
+                else if(player.PosX < 0)
+                {
+                    if(player.PosY == 0)
+                        return;
+                    
+                    player.PosY -= 1;
+                    player.PosX += board.GetLength(0);
+                }
+
+                else
+                {
+                    player.PosY += 1;
+                    player.PosX -= board.GetLength(0);    
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Check if player are in the same house
+        /// </summary>
+        /// <param name="turn">Player turn</param>
+        private void CheckCollisionWithPlayer(string turn)
+        {
+            if(player_1.PosY == player_2.PosY && player_1.PosX == player_2.PosX)
+            {
+                if(turn == "Player_1")
+                    player_2.PosX -= 1;
+                else
+                    player_1.PosX -= 1; 
+                
+            }
+        
         }
 
 
-
-
+        //Board
 
         /// <summary>
         /// Returns game board
@@ -187,30 +266,9 @@ namespace Snakes_and_Ladders
         /// </summary>
         /// <param name="x">line</param>
         /// <param name="y">column</param>
-        /// /// /// /// /// /// /// /// /// /// /// /// /// /// /// <returns>houses</returns>
+        /// <returns>houses</returns>
         public char GetPosition(int x, int y) => board[x, y];
-
-
-
-        /// <summary>
-        ///  Verify Who is the Winner
-        /// </summary>
-        public bool CheckWinner(bool loop)
-        {
-            if (player_1.PosX == 4 && player_1.PosY == 4)
-            {
-
-                loop = false;
-            }
-
-
-            if (player_2.PosX == 4 && player_2.PosY == 4)
-            {
-
-                loop = false;
-            }
-            return loop;
-        }
+        
 
 
         // Houses
@@ -251,6 +309,42 @@ namespace Snakes_and_Ladders
                 
             }
 
+        }
+        
+        /// <summary>
+        /// Generate Houses in board
+        /// </summary>
+        private void HousesGeneration(Houses house,int amount)
+        {
+
+            int x ;
+            int y;
+
+            for(int i =0; i<amount;){
+                x = dice.Random.Next(0,5);
+                y = dice.Random.Next(0,5);
+                
+                if(board[y,x] != (char)Houses.Normal||
+                   x==0&&y==0||
+                   x==4&&y==4)
+                    continue;
+
+                if(house == Houses.Snakes &&
+                   y==0)
+                    continue;
+
+                if(house == Houses.Ladders&&
+                   y==4)
+                    continue;
+
+                board[y,x] = (char)house;
+                i++;
+            }            
+        }
+
+        private void CheckHouses()
+        {
+            
         }
     }
 }

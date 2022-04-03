@@ -211,6 +211,18 @@ namespace Snakes_and_Ladders
             Console.WriteLine("Please type a valid option");
             return;
         }
+        
+        /// <summary>
+        /// Display a winner message
+        /// </summary>
+        /// <param name="_playerName">Player name</param>
+        public void WinnerMessage(string _playerName)
+        {
+            if (_playerName == "Player_1")
+                Console.WriteLine("Player 1 has won!!!");
+            if (_playerName == "Player_2")
+                Console.WriteLine("Player 2 has won!!!");
+        }
 
 
         /// <summary>
@@ -266,8 +278,7 @@ namespace Snakes_and_Ladders
             System.Console.WriteLine(" Snakes");
 
             Console.ResetColor();
-
-
+            
         }
     }
 }
