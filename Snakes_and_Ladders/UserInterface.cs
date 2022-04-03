@@ -90,15 +90,7 @@ namespace Snakes_and_Ladders
 
 
 
-                    if ((User) board.GetPosition(i,j) == board.Turn)
-                    {
-                        Console.Write(" " + board.GetPosition(i, j).ToString().ToLower() + " ");
-                    }
-                    else
-                    {
-                        Console.Write(" " + board.GetPosition(i, j) + " ");
-
-                    }
+                    
 
 
 

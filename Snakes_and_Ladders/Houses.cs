@@ -1,18 +1,41 @@
 namespace Snakes_and_Ladders
 {
     /// <summary>
-    /// Creates types of houses
+    /// Type of houses.
     /// </summary>
     public enum Houses
     {
-        Empty = 0,
-        Normal = 1,
-        Snakes = 2,
-        Ladders = 3,
-        Cobra = 4,
-        Boost = 5,
-        U_Turn = 6,
-        Extra_Die = 7,
-        Cheat_Die = 8
+        /// <summary>
+        /// Normal House.
+        /// </summary>
+        Normal,
+        /// <summary>
+        /// Snake House.
+        /// </summary>
+        Snakes,
+        /// <summary>
+        /// Ladder House.
+        /// </summary>
+        Ladders,
+        /// <summary>
+        /// Cobra House.
+        /// </summary>
+        Cobra,
+        /// <summary>
+        /// Boost House.
+        /// </summary>
+        Boost,
+        /// <summary>
+        /// U Turn House.
+        /// </summary>
+        U_Turn,
+        /// <summary>
+        /// Extra die House.
+        /// </summary>
+        Extra_Die,
+        /// <summary>
+        /// Cheat Die House.
+        /// </summary>
+        Cheat_Die,
     }
 }
