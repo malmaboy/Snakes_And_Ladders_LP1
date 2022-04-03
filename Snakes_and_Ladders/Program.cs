@@ -5,19 +5,6 @@ namespace Snakes_and_Ladders
 {
     class Program
     {
-        /// <summary>
-        /// Instance of the class User Interface
-        /// </summary>
-        private UserInterface userInterface;
-        
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public Program()
-        {
-            // Instance of the class User Interface
-            userInterface = new UserInterface();
-        }
         
         /// <summary>
         /// Main 
@@ -37,7 +24,9 @@ namespace Snakes_and_Ladders
         /// </summary>
         private void Run()
         {
-            userInterface.DisplayMenu();
+            GameLoop gameLoop;
+            gameLoop = new GameLoop();
+            gameLoop.StartGame();
         }
     }
 }

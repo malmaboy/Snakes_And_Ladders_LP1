@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace Snakes_and_Ladders
 {
+    /// <summary>
+    /// User Interface class.
+    /// </summary>
     public class UserInterface
     {
         /// <summary>
@@ -15,14 +18,21 @@ namespace Snakes_and_Ladders
         /// Creates vertical symbol for board creation
         /// </summary>
         private readonly string verticalSymbol;
-        /// <summary>
-        /// Constructor
-        /// </summary>
         
+        /// <summary>
+        /// Breaks the main menu loop
+        /// </summary>
+        private bool mainMenu;
+
+        /// <summary>
+        /// User interface construtor
+        /// </summary>
         public UserInterface()
         {
             horizontalSymbol = "-----";
             verticalSymbol = "|";
+
+            mainMenu = true;
         }
         /// <summary>
         /// Displays main menu
@@ -38,19 +48,23 @@ namespace Snakes_and_Ladders
             Console.WriteLine("(please type in the number of the option you " + 
             "want)");
         }
+        
 
+        /// <summary>
+        /// Shows game instructions.
+        /// </summary>
         private void Instructions()
         {
             Console.WriteLine("\n- This is a game for 2 players to see which" + 
             " one is the fastest to reach the end of the board.");
             Console.WriteLine("\n- The board has 25 houses, and the number of" + 
-            " houses the players go through is determined by dices of 6.");
+            " houses the players has to go through is determined by dices of 6.");
             Console.WriteLine("\n- Normal houses do nothing special.");
-            Console.WriteLine("\n- Snakes makes the player go back 5 houses.");
-            Console.WriteLine("\n- Ladders makes the player go up 5 houses.");
+            Console.WriteLine("\n- Snakes make the player descend one house directly below.");
+            Console.WriteLine("\n- Ladders make the player ascend one house directly above.");
             Console.WriteLine("\n- Cobra makes the player go back to the" + 
             " first house.");
-            Console.WriteLine("\n- Boost makes the player go up 2 houses.");
+            Console.WriteLine("\n- Boost makes the player move 2 houses.");
             Console.WriteLine("\n- U-Turn makes the player go back 2 houses.");
             Console.WriteLine("\n- Extra Die gives the player 1 more dice" + 
             " to use whenever the player wants (//Type here command to use//).");
@@ -64,7 +78,7 @@ namespace Snakes_and_Ladders
         /// Displays board on console and formats it
         /// </summary>
         /// <param name="board">board</param>
-        public void DisplayBoard(Board board)
+        public void DisplayBoard(Board board, Player player_1, Player player_2)
         {
             for (int i = 0; i < board.GetBoard().GetLength(0); i++)
             {
@@ -112,9 +126,10 @@ namespace Snakes_and_Ladders
             //Small introduction text
             Console.WriteLine("\nWelcome to Snakes and Ladders!");
             Console.WriteLine("Please write the instructions after the arrow " +
-                              "--->");
+                              "--->");   
 
-            while (true)
+            
+            while (mainMenu)
             {
                 //Calls for Main_Menu method
                 Main_Menu();
@@ -128,7 +143,7 @@ namespace Snakes_and_Ladders
                     switch (menu_option)
                     {
                     case "1":
-                        
+                        mainMenu = false;
                         break;
 
                     case "2":
@@ -149,7 +164,10 @@ namespace Snakes_and_Ladders
                 }
             }
         }
-
+        
+        /// <summary>
+        /// Shows invalid option in game menu
+        /// </summary>
         private void InvalidOption()
         {
             Console.WriteLine("Please type a valid option");
