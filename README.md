@@ -61,3 +61,5 @@ Em relação à arquitetura da nossa solução, utilizámos o Gameloop Pattern e
 - Na realização do nosso projeto, foram trocadas impressões com o nosso colega João Matos, sobre o movimento dos jogadores pelo tabuleiro. Depois desta troca de ideias implementámos então a lógica discutida com o colega.
 - StackOverflow
 - Microsoft .NET API
+
+Nota: O projeto não corre no git bash, devido a um erro com o readkey no dotnet 3.1, mas funciona em qualquer outra consola.
