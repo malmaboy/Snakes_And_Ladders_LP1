@@ -356,6 +356,8 @@ namespace Snakes_and_Ladders
             {
                 SnakeHouse();
                 LadderHouse();
+                CobraHouse();
+                BoostHouse();
             }
         }
 
@@ -396,6 +398,45 @@ namespace Snakes_and_Ladders
                 HouseToShow = "Ladders";
             }  
         } 
+        
+        /// <summary>
+        /// Return Player to the beginning of the board
+        /// </summary>
+        private void CobraHouse()
+        {
+            if(board[player_1.PosY, player_1.PosX] == (char) Houses.Cobra)
+            {
+                player_1.PosX = 0;
+                player_1.PosY = 0;
+                HouseToShow = "Cobra";
+            }
+            if(board[player_2.PosY, player_2.PosX] == (char) Houses.Cobra)
+            {
+                player_2.PosX = 0;
+                player_2.PosY = 0;
+                HouseToShow = "Cobra";
+            }
+
+            
+        }
+        
+        /// <summary>
+        /// Player advance 2 houses
+        /// </summary>
+        private void BoostHouse()
+        {
+            if(board[player_1.PosY, player_1.PosX] == (char) Houses.Boost)
+            {
+                player_1.PosX += 2;
+                HouseToShow = "Boost";
+            }
+            if(board[player_2.PosY, player_2.PosX] == (char) Houses.Boost)
+            {
+                player_2.PosX += 2;
+                HouseToShow = "Boost";
+            }
+
+        }
 
         
 
